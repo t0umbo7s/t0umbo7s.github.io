@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>每天 比赛 出入口_赛事影像社区_记录每一次出发与抵达</title>
+<meta name="description" content="每天比赛出入口官方网站，是聚焦赛事、通勤与竞技生活的原创高清视频社区，以企业级运营标准呈现赛事故事、创作者访谈与每日动态。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1b2a'/%3E%3Cpath d='M18 46V18h8l12 18V18h8v28h-8L26 28v18z' fill='%2338e1c9'/%3E%3C/svg%3E">
+<style>
+:root{
+  --dk-teal:#0d1b2a;
+  --dk-panel:#122436;
+  --dk-line:rgba(56,225,201,.22);
+  --neon:#38e1c9;
+  --neon-2:#8affd9;
+  --amber:#ffb347;
+  --txt:#e6f1f4;
+  --txt-dim:#9db4bf;
+  --bg:#0a1420;
+  --radius:14px;
+  --sticky-h:104px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:var(--sticky-h);}
+body{
+  margin:0;background:var(--bg);color:var(--txt);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+h1,h2,h3,h4{margin:0;line-height:1.3;font-weight:700;letter-spacing:.3px;}
+p{margin:0 0 .9em;}
+.dkm-wrap{width:min(1180px,92vw);margin:0 auto;}
+
+/* ===== 吸顶公告 + 页头 ===== */
+.dkm-sticky-shell{position:sticky;top:0;z-index:60;}
+.dkm-announce{
+  background:linear-gradient(90deg,#0f2a3f,#12405c 55%,#0f2a3f);
+  border-bottom:1px solid var(--dk-line);
+  font-size:13.5px;color:#cfeeee;
+}
+.dkm-announce-inner{
+  display:flex;align-items:center;gap:10px;padding:8px 0;flex-wrap:wrap;
+}
+.dkm-announce-badge{
+  background:var(--neon);color:#04221d;font-weight:700;font-size:12px;
+  padding:1px 9px;border-radius:20px;letter-spacing:.5px;flex:none;
+}
+.dkm-announce-track{overflow:hidden;flex:1;min-width:0;}
+.dkm-announce-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dkm-announce-link{color:var(--neon);border-bottom:1px dashed var(--neon);flex:none;}
+.dkm-header{
+  background:rgba(10,20,32,.94);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--dk-line);
+}
+.dkm-header-inner{display:flex;align-items:center;gap:20px;padding:12px 0;}
+.dkm-logo{display:flex;align-items:center;gap:10px;flex:none;}
+.dkm-logo-mark{
+  width:40px;height:40px;border-radius:11px;flex:none;
+  background:linear-gradient(140deg,var(--neon),#1f8f9e 70%);
+  display:grid;place-items:center;font-weight:800;color:#04211c;font-size:19px;
+}
+.dkm-logo-txt strong{display:block;font-size:17px;letter-spacing:1px;}
+.dkm-logo-txt span{font-size:11px;color:var(--txt-dim);letter-spacing:2.4px;text-transform:uppercase;}
+.dkm-nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap;}
+.dkm-nav a{
+  padding:6px 12px;border-radius:8px;font-size:14.5px;color:var(--txt-dim);
+  transition:.2s;
+}
+.dkm-nav a:hover{color:var(--neon);background:rgba(56,225,201,.08);}
+.dkm-search{position:relative;flex:none;width:214px;}
+.dkm-search input{
+  width:100%;background:#0f2333;border:1px solid var(--dk-line);border-radius:9px;
+  color:var(--txt);padding:8px 34px 8px 12px;font-size:13.5px;outline:none;font-family:inherit;
+}
+.dkm-search input:focus{border-color:var(--neon);box-shadow:0 0 0 3px rgba(56,225,201,.13);}
+.dkm-search-btn{
+  position:absolute;right:5px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--neon);cursor:pointer;font-size:15px;padding:4px;
+}
+.dkm-search-tip{
+  position:absolute;left:0;right:0;top:calc(100% + 6px);background:#122c3e;
+  border:1px solid var(--dk-line);border-radius:10px;padding:8px 12px;font-size:13px;
+  color:var(--neon-2);display:none;z-index:5;
+}
+.dkm-burger{
+  display:none;background:#0f2333;border:1px solid var(--dk-line);color:var(--neon);
+  border-radius:9px;font-size:19px;width:40px;height:38px;cursor:pointer;
+}
+
+/* ===== 首屏 ===== */
+.dkm-hero{padding:52px 0 46px;position:relative;overflow:hidden;}
+.dkm-hero::before{
+  content:"";position:absolute;inset:-20% -10% auto auto;width:620px;height:620px;
+  background:radial-gradient(circle,rgba(56,225,201,.16),transparent 65%);pointer-events:none;
+}
+.dkm-hero-grid{
+  display:grid;grid-template-columns:minmax(0,6fr) minmax(0,4fr);gap:38px;align-items:center;
+  position:relative;
+}
+.dkm-hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:2px;
+  color:var(--neon);border:1px solid var(--dk-line);border-radius:30px;padding:4px 14px;margin-bottom:18px;
+}
+.dkm-hero h1{
+  font-size:clamp(38px,6.2vw,72px);letter-spacing:4px;font-weight:800;
+  background:linear-gradient(96deg,#ffffff,var(--neon-2) 60%,#3fb8b0);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.dkm-hero-sub{font-size:17px;color:var(--txt-dim);margin:14px 0 20px;max-width:38em;}
+.dkm-hero-sub b{color:var(--neon-2);font-weight:600;}
+.dkm-hero-desc{
+  font-size:15px;color:#bfd3da;border-left:3px solid var(--neon);padding-left:16px;margin-bottom:24px;
+}
+.dkm-hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px;}
+.dkm-btn{
+  border-radius:10px;padding:11px 22px;font-size:14.5px;font-weight:600;cursor:pointer;
+  border:1px solid transparent;font-family:inherit;transition:.22s;display:inline-flex;align-items:center;gap:7px;
+}
+.dkm-btn-primary{background:linear-gradient(120deg,var(--neon),#25a8a0);color:#04211c;}
+.dkm-btn-primary:hover{filter:brightness(1.12);transform:translateY(-2px);}
+.dkm-btn-ghost{background:transparent;border-color:var(--dk-line);color:var(--neon-2);}
+.dkm-btn-ghost:hover{background:rgba(56,225,201,.1);}
+.dkm-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:520px;}
+.dkm-stat{background:var(--dk-panel);border:1px solid var(--dk-line);border-radius:12px;padding:12px 14px;}
+.dkm-stat b{display:block;font-size:23px;color:var(--neon);letter-spacing:.5px;}
+.dkm-stat span{font-size:12.5px;color:var(--txt-dim);}
+.dkm-hero-art{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--dk-line);
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.9);}
+.dkm-hero-art img{width:100%;aspect-ratio:4/5;object-fit:cover;}
+.dkm-hero-art-tag{
+  position:absolute;left:14px;bottom:14px;right:14px;display:flex;justify-content:space-between;
+  align-items:center;font-size:12.5px;background:rgba(6,18,26,.78);border:1px solid var(--dk-line);
+  border-radius:9px;padding:7px 12px;color:var(--neon-2);backdrop-filter:blur(4px);
+}
+
+/* ===== 通用 section ===== */
+.dkm-section{padding:56px 0;}
+.dkm-section + .dkm-section{padding-top:0;}
+.dkm-sec-head{margin-bottom:26px;}
+.dkm-kicker{
+  font-size:12px;letter-spacing:3px;color:var(--neon);text-transform:uppercase;display:block;margin-bottom:8px;
+}
+.dkm-sec-head h2{font-size:clamp(23px,3.4vw,32px);letter-spacing:1.5px;}
+.dkm-sec-head p{color:var(--txt-dim);font-size:14.5px;margin-top:8px;max-width:62em;}
+.dkm-rule{height:1px;background:linear-gradient(90deg,var(--neon),transparent 70%);margin:0 0 26px;}
+
+/* 焦点区：一大 + 文字列表 */
+.dkm-focus-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,4fr);gap:30px;align-items:start;}
+.dkm-focus-main{background:var(--dk-panel);border:1px solid var(--dk-line);border-radius:var(--radius);overflow:hidden;}
+.dkm-focus-main img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+.dkm-focus-body{padding:18px 20px 20px;}
+.dkm-focus-body h3{font-size:20px;margin-bottom:8px;}
+.dkm-focus-body p{font-size:14px;color:var(--txt-dim);}
+.dkm-meta{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--txt-dim);margin-top:12px;}
+.dkm-meta i{font-style:normal;color:var(--neon-2);}
+.dkm-tag{
+  display:inline-block;font-size:12px;padding:1px 9px;border-radius:20px;
+  background:rgba(56,225,201,.1);color:var(--neon-2);border:1px solid var(--dk-line);margin-right:6px;
+}
+.dkm-list{display:flex;flex-direction:column;gap:0;}
+.dkm-list-item{
+  padding:15px 4px;border-bottom:1px dashed rgba(157,180,191,.22);
+  display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:start;
+}
+.dkm-list-item:first-child{padding-top:0;}
+.dkm-list-idx{font-size:19px;font-weight:800;color:rgba(56,225,201,.5);line-height:1.4;}
+.dkm-list-item h3{font-size:16px;margin-bottom:5px;}
+.dkm-list-item h3 a:hover{color:var(--neon);}
+.dkm-list-item p{font-size:13.5px;color:var(--txt-dim);margin:0 0 4px;}
+.dkm-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.dkm-act{
+  background:#0f2333;border:1px solid var(--dk-line);color:var(--txt-dim);border-radius:7px;
+  font-size:12.5px;padding:3px 10px;cursor:pointer;font-family:inherit;transition:.18s;
+}
+.dkm-act:hover{color:var(--neon);border-color:var(--neon);}
+.dkm-act.on{color:#04211c;background:var(--neon);border-color:var(--neon);}
+
+/* 视频卡片网格：三列 */
+.dkm-vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.dkm-vcard{
+  background:var(--dk-panel);border:1px solid var(--dk-line);border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;transition:.25s;
+}
+.dkm-vcard:hover{transform:translateY(-4px);border-color:rgba(56,225,201,.55);box-shadow:0 18px 34px -22px rgba(56,225,201,.55);}
+.dkm-vcard img{width:100%;aspect-ratio:16/9;object-fit:cover;}
+.dkm-vcard-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.dkm-vcard-body h3{font-size:16px;}
+.dkm-vcard-body p{font-size:13.5px;color:var(--txt-dim);margin:0;}
+.dkm-vcard .dkm-meta{margin-top:auto;}
+
+/* 专题 */
+.dkm-topics{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;}
+.dkm-topic{
+  background:linear-gradient(170deg,#122436,#0e1e2c);border:1px solid var(--dk-line);
+  border-radius:var(--radius);padding:20px 22px;
+}
+.dkm-topic h3{font-size:18px;margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.dkm-status{font-size:11.5px;background:rgba(255,179,71,.14);color:var(--amber);border-radius:20px;padding:1px 9px;border:1px solid rgba(255,179,71,.3);}
+.dkm-status.live{color:var(--neon);background:rgba(56,225,201,.12);border-color:var(--dk-line);}
+.dkm-topic p{font-size:13.5px;color:var(--txt-dim);}
+.dkm-topic ol{margin:10px 0 0;padding-left:20px;font-size:13.5px;color:#c3d6de;}
+.dkm-topic ol li{margin-bottom:5px;}
+.dkm-topic ol li span{color:var(--txt-dim);}
+.dkm-topic-art img{width:100%;aspect-ratio:21/9;object-fit:cover;border-radius:10px;margin-bottom:12px;}
+
+/* 深度解析 */
+.dkm-deep{background:var(--dk-panel);border:1px solid var(--dk-line);border-radius:18px;padding:30px 32px;}
+.dkm-deep h2{margin-bottom:6px;}
+.dkm-deep h3{font-size:17.5px;color:var(--neon-2);margin:24px 0 8px;}
+.dkm-deep p{font-size:14.8px;color:#c8dadf;}
+.dkm-deep-lead{color:var(--txt-dim);font-size:14px;margin-bottom:6px;}
+.dkm-deep-quote{
+  border-left:3px solid var(--amber);background:rgba(255,179,71,.06);padding:12px 16px;
+  font-size:14px;color:#e8dcc6;border-radius:0 8px 8px 0;margin:18px 0;
+}
+
+/* 作者：双列简介 */
+.dkm-authors{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;}
+.dkm-author{
+  display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;
+  background:var(--dk-panel);border:1px solid var(--dk-line);border-radius:var(--radius);padding:18px;
+}
+.dkm-avatar{
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  font-weight:800;font-size:22px;color:#04211c;flex:none;
+}
+.dkm-author h3{font-size:17px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.dkm-author h3 small{font-size:11.5px;color:var(--neon-2);font-weight:500;}
+.dkm-author .dkm-field{font-size:12.5px;color:var(--amber);margin:3px 0 6px;}
+.dkm-author p{font-size:13.3px;color:var(--txt-dim);margin:0 0 8px;}
+.dkm-author-nums{display:flex;gap:16px;font-size:12.5px;color:var(--txt-dim);}
+.dkm-author-nums b{color:var(--neon);}
+.dkm-author-btns{margin-top:10px;}
+
+/* 评论：双列短评 */
+.dkm-comments{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;}
+.dkm-comment{
+  background:#0f2333;border:1px solid rgba(157,180,191,.16);border-radius:12px;padding:14px 16px;
+}
+.dkm-comment-head{display:flex;align-items:center;gap:9px;margin-bottom:7px;font-size:13px;}
+.dkm-comment-head .dkm-mini-av{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;
+  font-weight:700;color:#04211c;flex:none;
+}
+.dkm-comment-head b{font-weight:600;font-size:13px;}
+.dkm-comment-head span{color:var(--txt-dim);font-size:12px;}
+.dkm-comment p{font-size:13.5px;color:#c6d8de;margin:0;}
+
+/* 数据榜 */
+.dkm-rank{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;}
+.dkm-rank-col{background:var(--dk-panel);border:1px solid var(--dk-line);border-radius:var(--radius);padding:16px 18px;}
+.dkm-rank-col h3{font-size:16px;margin-bottom:10px;color:var(--neon-2);}
+.dkm-rank-col ol{list-style:none;margin:0;padding:0;font-size:13.5px;}
+.dkm-rank-col li{display:flex;gap:9px;padding:7px 0;border-bottom:1px dashed rgba(157,180,191,.16);}
+.dkm-rank-col li:last-child{border-bottom:none;}
+.dkm-rank-no{color:var(--amber);font-weight:700;width:16px;flex:none;}
+.dkm-rank-col li span{flex:1;min-width:0;color:#c8dadf;}
+.dkm-rank-col li i{font-style:normal;color:var(--txt-dim);font-size:12.5px;flex:none;}
+
+/* 辅助区三列 */
+.dkm-aux{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;}
+.dkm-aux-card{background:#0f2333;border:1px solid var(--dk-line);border-radius:var(--radius);padding:20px;}
+.dkm-aux-card h3{font-size:16px;margin-bottom:12px;}
+.dkm-aux-card p{font-size:13.3px;color:var(--txt-dim);}
+.dkm-news{list-style:none;margin:0;padding:0;font-size:13.3px;}
+.dkm-news li{padding:7px 0;border-bottom:1px dashed rgba(157,180,191,.16);display:flex;gap:9px;}
+.dkm-news li:last-child{border-bottom:none;}
+.dkm-news time{color:var(--neon);flex:none;font-size:12.5px;}
+.dkm-partner{display:flex;flex-wrap:wrap;gap:8px;}
+.dkm-partner span{
+  font-size:12.5px;padding:4px 11px;border-radius:8px;background:#122a3b;
+  border:1px solid var(--dk-line);color:#bcd3da;
+}
+.dkm-faq details{border-bottom:1px dashed rgba(157,180,191,.18);padding:9px 0;}
+.dkm-faq details:last-child{border-bottom:none;}
+.dkm-faq summary{
+  cursor:pointer;font-size:13.8px;color:#d6e6ea;list-style:none;display:flex;gap:8px;align-items:flex-start;
+}
+.dkm-faq summary::-webkit-details-marker{display:none;}
+.dkm-faq summary::before{content:"+";color:var(--neon);font-weight:700;flex:none;}
+.dkm-faq details[open] summary::before{content:"–";}
+.dkm-faq details p{font-size:13px;color:var(--txt-dim);margin:6px 0 0 16px;}
+
+/* 投稿/联系横幅 */
+.dkm-cta{
+  margin-top:8px;background:linear-gradient(110deg,#0f3141,#132436 60%,#0f3141);
+  border:1px solid var(--dk-line);border-radius:18px;padding:28px 30px;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:space-between;
+}
+.dkm-cta h2{font-size:22px;}
+.dkm-cta p{color:var(--txt-dim);font-size:14px;margin:6px 0 0;max-width:42em;}
+
+/* 页脚 */
+.dkm-footer{border-top:1px solid var(--dk-line);background:#08111a;padding:38px 0 26px;margin-top:56px;font-size:13.5px;color:var(--txt-dim);}
+.dkm-footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.2fr;gap:26px;}
+.dkm-footer h4{font-size:14px;color:var(--txt);margin-bottom:10px;}
+.dkm-footer ul{list-style:none;margin:0;padding:0;}
+.dkm-footer li{padding:3px 0;}
+.dkm-footer a:hover{color:var(--neon);}
+.dkm-footer-bottom{border-top:1px solid rgba(157,180,191,.14);margin-top:24px;padding-top:16px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;}
+
+/* 弹窗/Toast */
+.dkm-modal-mask{
+  position:fixed;inset:0;background:rgba(3,9,14,.78);backdrop-filter:blur(3px);
+  display:none;place-items:center;z-index:120;padding:20px;
+}
+.dkm-modal-mask.open{display:grid;}
+.dkm-modal{
+  background:#0e2130;border:1px solid var(--dk-line);border-radius:16px;
+  width:min(520px,94vw);padding:24px 26px;box-shadow:0 30px 80px -30px #000;
+}
+.dkm-modal h3{font-size:18px;margin-bottom:8px;color:var(--neon-2);}
+.dkm-modal p{font-size:13.8px;color:var(--txt-dim);}
+.dkm-modal .dkm-field-line{font-size:13.5px;margin:10px 0;}
+.dkm-modal textarea,.dkm-modal input{
+  width:100%;background:#0a1a26;border:1px solid var(--dk-line);border-radius:9px;
+  color:var(--txt);padding:9px 12px;font-family:inherit;font-size:13.5px;outline:none;
+}
+.dkm-modal textarea{min-height:88px;resize:vertical;margin-top:8px;}
+.dkm-modal-foot{display:flex;gap:10px;justify-content:flex-end;margin-top:16px;}
+.dkm-toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);opacity:0;
+  background:var(--neon);color:#04211c;font-weight:600;font-size:13.5px;padding:10px 22px;
+  border-radius:30px;z-index:200;transition:.3s;pointer-events:none;box-shadow:0 12px 30px -10px rgba(56,225,201,.7);
+}
+.dkm-toast.show{opacity:1;transform:translate(-50%,0);}
+.dkm-top-btn{
+  position:fixed;right:20px;bottom:24px;width:44px;height:44px;border-radius:50%;
+  background:#122a3b;border:1px solid var(--dk-line);color:var(--neon);font-size:18px;
+  cursor:pointer;display:none;place-items:center;z-index:90;
+}
+.dkm-top-btn.show{display:grid;}
+.dkm-search-feedback{
+  margin:0 0 18px;font-size:13.5px;color:var(--neon-2);display:none;
+  background:rgba(56,225,201,.08);border:1px solid var(--dk-line);border-radius:10px;padding:9px 14px;
+}
+
+@media (max-width:960px){
+  .dkm-hero-grid,.dkm-focus-grid,.dkm-topics,.dkm-authors,.dkm-comments,
+  .dkm-rank,.dkm-aux,.dkm-vgrid,.dkm-footer-grid{grid-template-columns:minmax(0,1fr);}
+  .dkm-nav{display:none;order:5;width:100%;flex-direction:column;gap:2px;padding:8px 0 4px;}
+  .dkm-nav.open{display:flex;}
+  .dkm-burger{display:block;margin-left:auto;}
+  .dkm-search{width:100%;order:4;margin-top:4px;}
+  .dkm-header-inner{flex-wrap:wrap;gap:10px;}
+  .dkm-hero{padding-top:34px;}
+  .dkm-deep{padding:22px 18px;}
+  .dkm-stats{max-width:none;}
+}
+@media (max-width:560px){
+  .dkm-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;}
+  .dkm-stat{padding:9px 10px;}
+  .dkm-stat b{font-size:18px;}
+  .dkm-announce{font-size:12.5px;}
+  .dkm-author{grid-template-columns:52px minmax(0,1fr);}
+  .dkm-avatar{width:52px;height:52px;font-size:18px;}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="dkm-sticky-shell">
+  <!-- S1 公告条 -->
+  <div class="dkm-announce" role="region" aria-label="站内公告">
+    <div class="dkm-wrap dkm-announce-inner">
+      <span class="dkm-announce-badge">新增</span>
+      <div class="dkm-announce-track">
+        <div class="dkm-announce-text">「四季联赛·冬季出入口」第 12 期赛程影像已上线，同步开放大众组报名与上传通道，今日更新 6 条赛场短片。</div>
+      </div>
+      <a class="dkm-announce-link" href="#dkm-topics">查看专题</a>
+    </div>
+  </div>
+
+  <!-- 页头 -->
+  <header class="dkm-header">
+    <div class="dkm-wrap dkm-header-inner">
+      <a class="dkm-logo" href="#dkm-hero" aria-label="每天比赛出入口官方网站首页">
+        <span class="dkm-logo-mark">出</span>
+        <span class="dkm-logo-txt"><strong>每天比赛出入口</strong><span>Match Gate Video</span></span>
+      </a>
+      <button class="dkm-burger" id="dkmBurger" aria-label="展开导航" aria-expanded="false">☰</button>
+      <div class="dkm-search">
+        <input type="search" id="dkmSearchInput" placeholder="搜索赛事、创作者、出入口…" aria-label="站内搜索">
+        <button class="dkm-search-btn" id="dkmSearchBtn" aria-label="搜索">⌕</button>
+        <div class="dkm-search-tip" id="dkmSearchTip">输入关键词后按回车或点击搜索</div>
+      </div>
+      <nav class="dkm-nav" id="dkmNav" aria-label="主导航">
+        <a href="#dkm-hero">首页</a>
+        <a href="#dkm-focus">焦点</a>
+        <a href="#dkm-videos">视频</a>
+        <a href="#dkm-topics">专题</a>
+        <a href="#dkm-deep">深度</a>
+        <a href="#dkm-authors">创作者</a>
+        <a href="#dkm-comments">口碑</a>
+        <a href="#dkm-faq">帮助</a>
+      </nav>
+    </div>
+  </header>
+</div>
+
+<main>
+  <!-- S2 品牌首屏 -->
+  <section class="dkm-hero" id="dkm-hero">
+    <div class="dkm-wrap dkm-hero-grid">
+      <div>
+        <span class="dkm-hero-eyebrow">官方 · 原创高清赛事影像社区</span>
+        <h1>每天比赛出入口</h1>
+        <p class="dkm-hero-sub">把每一次<b>出发与抵达</b>都拍成作品。这里是聚焦赛事与竞技生活的视频品牌官方网站，记录起点、终点，以及两段之间所有值得回看的分秒。</p>
+        <p class="dkm-hero-desc">作为持续运营八年的赛事影像品牌，我们以专业团队深耕垂直领域，为参赛者、俱乐部与城市主办方搭建原创、正版、高清的内容生态：哪里有赛场，哪里就有出入口。</p>
+        <div class="dkm-hero-btns">
+          <a class="dkm-btn dkm-btn-primary" href="#dkm-videos">观看今日精选</a>
+          <a class="dkm-btn dkm-btn-ghost" href="#dkm-authors">认识创作者</a>
+          <button class="dkm-btn dkm-btn-ghost" id="dkmSubmitOpen1">投稿我的赛场</button>
+        </div>
+        <div class="dkm-stats">
+          <div class="dkm-stat"><b>1,860+</b><span>赛事影像作品</span></div>
+          <div class="dkm-stat"><b>92 万</b><span>月均观看人次</span></div>
+          <div class="dkm-stat"><b>137</b><span>签约创作者</span></div>
+        </div>
+      </div>
+      <div class="dkm-hero-art">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 1000'%3E%3Cdefs%3E%3ClinearGradient id='sky' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23081a28'/%3E%3Cstop offset='.55' stop-color='%230f3141'/%3E%3Cstop offset='1' stop-color='%23061922'/%3E%3C/linearGradient%3E%3ClinearGradient id='gate' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%2338e1c9'/%3E%3Cstop offset='1' stop-color='%231f7f8e'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='1000' fill='url(%23sky)'/%3E%3Cg opacity='.5'%3E%3Ccircle cx='620' cy='210' r='90' fill='%23ffb347' opacity='.28'/%3E%3Ccircle cx='620' cy='210' r='46' fill='%23ffd79a' opacity='.5'/%3E%3C/g%3E%3Cg stroke='%2338e1c9' stroke-width='3' opacity='.55'%3E%3Cpath d='M60 760 L250 470 L440 760' fill='none'/%3E%3Cpath d='M360 760 L550 470 L740 760' fill='none'/%3E%3C/g%3E%3Crect x='120' y='230' width='34' height='520' rx='8' fill='url(%23gate)' opacity='.92'/%3E%3Crect x='646' y='230' width='34' height='520' rx='8' fill='url(%23gate)' opacity='.92'/%3E%3Crect x='120' y='230' width='560' height='26' rx='8' fill='%238affd9' opacity='.8'/%3E%3Cg fill='%23e6f1f4' opacity='.9'%3E%3Ccircle cx='300' cy='640' r='12'/%3E%3Cpath d='M300 652 q-22 26 -14 74 h28 q8-48 -14-74z'/%3E%3Ccircle cx='420' cy='600' r='12'/%3E%3Cpath d='M420 612 q-22 26 -14 74 h28 q8-48 -14-74z'/%3E%3Ccircle cx='520' cy='668' r='12'/%3E%3Cpath d='M520 680 q-22 26 -14 74 h28 q8-48 -14-74z'/%3E%3C/g%3E%3Cg stroke='%23ffb347' stroke-width='4' fill='none' opacity='.85'%3E%3Cpath d='M200 900 h400'/%3E%3Cpath d='M200 900 l-18 -16 M200 900 l-18 16'/%3E%3Cpath d='M600 900 l18 -16 M600 900 l18 16'/%3E%3C/g%3E%3Ctext x='400' y='960' font-family='sans-serif' font-size='26' fill='%238affd9' text-anchor='middle' letter-spacing='8'%3ESTART / FINISH%3C/text%3E%3C/svg%3E" width="800" height="1000" alt="每天比赛出入口品牌主视觉：夜色中的赛道闸门与奔跑人群剪影">
+        <div class="dkm-hero-art-tag"><span>四季联赛 · 冬季出入口</span><span>4K 60FPS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 焦点内容 -->
+  <section class="dkm-section" id="dkm-focus">
+    <div class="dkm-wrap">
+      <div class="dkm-sec-head">
+        <span class="dkm-kicker">Focus Today</span>
+        <h2>今天的出入口，先看这三段</h2>
+        <p>每天比赛出入口的编辑团队会在赛事结束后六小时内完成审片与上线，把起点的人潮与终点的拥抱剪进同一支片子。以下是今日焦点推荐。</p>
+      </div>
+      <div class="dkm-rule"></div>
+      <div class="dkm-focus-grid">
+        <article class="dkm-focus-main">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 960 540'%3E%3Cdefs%3E%3ClinearGradient id='t1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23102a3c'/%3E%3Cstop offset='1' stop-color='%23081a24'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='960' height='540' fill='url(%23t1)'/%3E%3Cg stroke='%2338e1c9' stroke-width='2' opacity='.4'%3E%3Cpath d='M0 400 H960 M0 450 H960 M0 500 H960'/%3E%3C/g%3E%3Cg fill='%23ffb347'%3E%3Ccircle cx='120' cy='330' r='16'/%3E%3Ccircle cx='190' cy='318' r='14'/%3E%3Ccircle cx='250' cy='336' r='12'/%3E%3C/g%3E%3Cg fill='%238affd9'%3E%3Crect x='330' y='250' width='26' height='190' rx='6'/%3E%3Crect x='604' y='250' width='26' height='190' rx='6'/%3E%3Crect x='330' y='250' width='300' height='20' rx='6'/%3E%3C/g%3E%3Cg fill='%23e6f1f4' opacity='.85'%3E%3Ccircle cx='410' cy='340' r='13'/%3E%3Cpath d='M410 352 q-20 24 -12 66 h24 q8-42 -12-66z'/%3E%3Ccircle cx='470' cy='320' r='13'/%3E%3Cpath d='M470 332 q-20 24 -12 66 h24 q8-42 -12-66z'/%3E%3Ccircle cx='530' cy='352' r='13'/%3E%3Cpath d='M530 364 q-20 24 -12 66 h24 q8-42 -12-66z'/%3E%3C/g%3E%3Cg fill='%23ffd79a'%3E%3Crect x='700' y='150' width='14' height='300' rx='4' opacity='.7'/%3E%3Ccircle cx='707' cy='148' r='22' opacity='.5'/%3E%3C/g%3E%3Ctext x='60' y='90' font-family='sans-serif' font-size='30' fill='%2338e1c9' letter-spacing='4'%3E06:00 起点闸门开启%3C/text%3E%3C/svg%3E" width="960" height="540" alt="城市半程马拉松起点闸门开启时选手涌出的航拍画面">
+          <div class="dkm-focus-body">
+            <h3>起点六点整：三千人穿过同一道门</h3>
+            <p>我们跟拍了城市半程马拉松最早的入场时段，从检录、热身到发令枪响，记录普通跑者如何用一条条号码布完成属于自己的仪式。这是每天比赛出入口最受欢迎的一类作品。</p>
+            <div class="dkm-meta"><span>标签 <i>#城市探索</i> <i>#赛事纪实</i></span><span>作者 沈川野</span><span>播放 12.6 万</span><span>点赞 8,402</span></div>
+            <div class="dkm-actions">
+              <button class="dkm-act" data-like>赞 8,402</button>
+              <button class="dkm-act" data-fav>♡ 收藏</button>
+              <button class="dkm-act" data-copy>复制链接</button>
+              <button class="dkm-act" data-comment>评论</button>
+            </div>
+          </div>
+        </article>
+        <div class="dkm-list">
+          <article class="dkm-list-item">
+            <div class="dkm-list-idx">02</div>
+            <div>
+              <h3><a href="#dkm-videos">终点线后的十二秒：给对手一个拥抱</a></h3>
+              <p>一场 U17 决赛的收尾镜头，我们保留了三台机位的完整素材，只为还原那些被计时器忽略的情绪。</p>
+              <div><span class="dkm-tag">情感故事</span><span class="dkm-tag">人物访谈</span></div>
+              <div class="dkm-actions">
+                <button class="dkm-act" data-like>赞 5,190</button>
+                <button class="dkm-act" data-fav>♡ 收藏</button>
+                <button class="dkm-act" data-comment>评论</button>
+              </div>
+            </div>
+          </article>
+          <article class="dkm-list-item">
+            <div class="dkm-list-idx">03</div>
+            <div>
+              <h3><a href="#dkm-videos">一条通道的两端：地铁出入口里的通勤赛</a></h3>
+              <p>把每天的换乘路程当作比赛来拍，镜头从刷卡闸机一路跟到出站扶梯，平凡通勤也有了节奏感。</p>
+              <div><span class="dkm-tag">日常记录</span><span class="dkm-tag">城市探索</span></div>
+              <div class="dkm-actions">
+                <button class="dkm-act" data-like>赞 4,736</button>
+                <button class="dkm-act" data-fav>♡ 收藏</button>
+                <button class="dkm-act" data-comment>评论</button>
+              </div>
+            </div>
+          </article>
+          <article class="dkm-list-item">
+            <div class="dkm-list-idx">04</div>
+            <div>
+              <h3><a href="#dkm-videos">裁判席视角：一场比赛为什么需要出入口管理</a></h3>
+              <p>从裁判长的工作台看过去，人群分流、计时校验、应急通道，每一个出入口都是一次精密调度。</p>
+              <div><span class="dkm-tag">知识科普</span><span class="dkm-tag">行业观察</span></div>
+              <div class="dkm-actions">
+                <button class="dkm-act" data-like>赞 3,285</button>
+                <button class="dkm-act" data-fav>♡ 收藏</button>
+                <button class="dkm-act" data-comment>评论</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S3 视频区：三列卡片 -->
+  <section class="dkm-section" id="dkm-videos">
+    <div class="dkm-wrap">
+      <div class="dkm-sec-head">
+        <span class="dkm-kicker">Video Feed</span>
+        <h2>热门视频流 ｜ 每天的赛场都在更新</h2>
+        <p>所有条目均来自本站原创拍摄或经授权的正版素材，支持高清回看。每一条视频都附有作者、数据与收藏入口，欢迎在评论区留下你的赛场记忆。</p>
+      </div>
+      <div class="dkm-search-feedback" id="dkmSearchFeedback"></div>
+      <div class="dkm-vgrid">
+        <article class="dkm-vcard">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%230b1f2c'/%3E%3Cg stroke='%2338e1c9' stroke-width='2' opacity='.35'%3E%3Ccircle cx='320' cy='180' r='120' fill='none'/%3E%3Ccircle cx='320' cy='180' r='82' fill='none'/%3E%3Ccircle cx='320' cy='180' r='44' fill='none'/%3E%3C/g%3E%3Cg fill='%23ffb347'%3E%3Ccircle cx='320' cy='74' r='9'/%3E%3Ccircle cx='426' cy='180' r='9'/%3E%3Ccircle cx='214' cy='180' r='9'/%3E%3Ccircle cx='320' cy='286' r='9'/%3E%3C/g%3E%3Cg fill='%23e6f1f4' opacity='.9'%3E%3Ccircle cx='320' cy='166' r='14'/%3E%3Cpath d='M320 180 q-24 28 -14 76 h28 q10-48 -14-76z'/%3E%3C/g%3E%3Ctext x='320' y='340' font-family='sans-serif' font-size='20' fill='%238affd9' text-anchor='middle' letter-spacing='5'%3ETARGET%3C/text%3E%3C/svg%3E" width="640" height="360" alt="射击比赛靶位与中心弹着点的图形化封面">
+          <div class="dkm-vcard-body">
+            <h3>十米气步枪：靶心之外的呼吸节奏</h3>
+            <p>把镜头放慢到八分之一速，才看清运动员在扣扳机前那两秒的呼吸控制。</p>
+            <div><span class="dkm-tag">教程干货</span><span class="dkm-tag">科技前沿</span></div>
+            <div class="dkm-meta"><span>作者 顾溪白</span><span>播放 8.1 万</span><span>收藏 2,106</span></div>
+            <div class="dkm-actions">
+              <button class="dkm-act" data-like>赞 6,013</button>
+              <button class="dkm-act" data-fav>♡ 收藏</button>
+              <button class="dkm-act" data-copy>复制链接</button>
+            </div>
+          </div>
+        </article>
+        <article class="dkm-vcard">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%230d2432'/%3E%3Cpath d='M0 300 Q160 220 320 260 T640 240 V360 H0z' fill='%23124a52' opacity='.8'/%3E%3Cg stroke='%238affd9' stroke-width='2' fill='none' opacity='.6'%3E%3Cpath d='M40 300 q60 -50 120 0'/%3E%3Cpath d='M180 300 q60 -50 120 0'/%3E%3Cpath d='M320 300 q60 -50 120 0'/%3E%3Cpath d='M460 300 q60 -50 120 0'/%3E%3C/g%3E%3Cg fill='%23ffb347'%3E%3Cpath d='M180 120 l40 24 -40 24z'/%3E%3C/g%3E%3Cg fill='%23101620'%3E%3Ccircle cx='180' cy='144' r='18'/%3E%3C/g%3E%3Ctext x='320' y='60' font-family='sans-serif' font-size='22' fill='%2338e1c9' text-anchor='middle' letter-spacing='3'%3E水上赛道%3C/text%3E%3C/svg%3E" width="640" height="360" alt="赛艇赛道水面航拍与起点浮标的插画封面">
+          <div class="dkm-vcard-body">
+            <h3>赛艇日：从下水码头到 2000 米终点</h3>
+            <p>跟随一条八人艇走完整个赛程，船上收音、教练喊话与岸上鼓点同时保留。</p>
+            <div><span class="dkm-tag">户外活动</span><span class="dkm-tag">创作幕后</span></div>
+            <div class="dkm-meta"><span>作者 江渡</span><span>播放 6.4 万</span><span>收藏 1,892</span></div>
+            <div class="dkm-actions">
+              <button class="dkm-act" data-like>赞 4,507</button>
+              <button class="dkm-act" data-fav>♡ 收藏</button>
+              <button class="dkm-act" data-share>分享</button>
+            </div>
+          </div>
+        </article>
+        <article class="dkm-vcard">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23101c28'/%3E%3Cg stroke='%23ffb347' stroke-width='3' fill='none'%3E%3Cpath d='M80 280 h480'/%3E%3Cpath d='M140 280 v-90 h80 v90'/%3E%3Cpath d='M260 280 v-140 h80 v140'/%3E%3Cpath d='M380 280 v-60 h80 v60'/%3E%3C/g%3E%3Cg fill='%2338e1c9' opacity='.9'%3E%3Ccircle cx='180' cy='170' r='10'/%3E%3Ccircle cx='300' cy='120' r='10'/%3E%3Ccircle cx='420' cy='200' r='10'/%3E%3C/g%3E%3Ctext x='320' y='60' font-family='sans-serif' font-size='22' fill='%238affd9' text-anchor='middle' letter-spacing='4'%3E数据看台%3C/text%3E%3C/svg%3E" width="640" height="360" alt="看台剪影与数据柱状条结合的赛事分析封面">
+          <div class="dkm-vcard-body">
+            <h3>用三张图表读懂一场联赛的攻防效率</h3>
+            <p>数据编辑把整季 24 场比赛拆成可比较的指标，做出适合赛后复盘的观察角度。</p>
+            <div><span class="dkm-tag">行业观察</span><span class="dkm-tag">深度测评</span></div>
+            <div class="dkm-meta"><span>作者 韩拾</span><span>播放 5.2 万</span><span>收藏 1,455</span></div>
+            <div class="dkm-actions">
+              <button class="dkm-act" data-like>赞 3,918</button>
+              <button class="dkm-act" data-fav>♡ 收藏</button>
+              <button class="dkm-act" data-copy>复制链接</button>
+            </div>
+          </div>
+        </article>
+        <article class="dkm-vcard">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%230a1f24'/%3E%3Cg fill='%23164a44'%3E%3Crect x='60' y='220' width='520' height='14' rx='7'/%3E%3Crect x='60' y='260' width='400' height='10' rx='5' opacity='.6'/%3E%3C/g%3E%3Cg fill='%23e6f1f4' opacity='.9'%3E%3Ccircle cx='180' cy='180' r='12'/%3E%3Cpath d='M180 192 q-22 26 -14 74 h28 q8-48 -14-74z'/%3E%3Ccircle cx='300' cy='164' r='12'/%3E%3Cpath d='M300 176 q-22 26 -14 74 h28 q8-48 -14-74z'/%3E%3C/g%3E%3Ccircle cx='500' cy='150' r='34' fill='none' stroke='%23ffb347' stroke-width='3'/%3E%3Ctext x='500' y='158' font-family='sans-serif' font-size='26' fill='%23ffb347' text-anchor='middle'%3E1%3C/text%3E%3Ctext x='320' y='330' font-family='sans-serif' font-size='20' fill='%238affd9' text-anchor='middle' letter-spacing='4'%3E冲线瞬间%3C/text%3E%3C/svg%3E" width="640" height="360" alt="田径跑道终点线前三名选手冲刺的图形化封面">
+          <div class="dkm-vcard-body">
+            <h3>百米决赛终点线：0.01 秒之外的三种人生</h3>
+            <p>分别采访冠军、第四名与退赛者，三个人对同一块跑道的不同回答。</p>
+            <div><span class="dkm-tag">人物访谈</span><span class="dkm-tag">治愈影像</span></div>
+            <div class="dkm-meta"><span>作者 沈川野</span><span>播放 9.7 万</span><span>收藏 3,240</span></div>
+            <div class="dkm-actions">
+              <button class="dkm-act" data-like>赞 7,602</button>
+              <button class="dkm-act" data-fav>♡ 收藏</button>
+              <button class="dkm-act" data-comment>评论</button>
+            </div>
+          </div>
+        </article>
+        <article class="dkm-vcard">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%2311231e'/%3E%3Cg stroke='%2338e1c9' stroke-width='2' fill='none' opacity='.55'%3E%3Cpath d='M40 320 q80 -60 160 0 t160 0 t160 0 t80 0'/%3E%3C/g%3E%3Cg fill='%23ffb347' opacity='.85'%3E%3Crect x='120' y='120' width='60' height='120' rx='8'/%3E%3Crect x='230' y='160' width='60' height='80' rx='8'/%3E%3Crect x='340' y='100' width='60' height='140' rx='8'/%3E%3C/g%3E%3Cg fill='%238affd9'%3E%3Ccircle cx='150' cy='96' r='12'/%3E%3Ccircle cx='370' cy='76' r='12'/%3E%3C/g%3E%3Ctext x='500' y='200' font-family='sans-serif' font-size='20' fill='%2338e1c9' letter-spacing='2'%3E晨练%3C/text%3E%3C/svg%3E" width="640" height="360" alt="城市公园清晨晨练人群与器材的插画封面">
+          <div class="dkm-vcard-body">
+            <h3>晨练攻略：把公园器械用成一套完整热身</h3>
+            <p>联合康复师拍摄的十五分钟热身流程，按人群强度分三档，适合赛前一周跟练。</p>
+            <div><span class="dkm-tag">实用技巧</span><span class="dkm-tag">健康运动</span></div>
+            <div class="dkm-meta"><span>作者 苏慢</span><span>播放 7.3 万</span><span>收藏 2,884</span></div>
+            <div class="dkm-actions">
+              <button class="dkm-act" data-like>赞 5,441</button>
+              <button class="dkm-act" data-fav>♡ 收藏</button>
+              <button class="dkm-act" data-share>分享</button>
+            </div>
+          </div>
+        </article>
+        <article class="dkm-vcard">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%230c1a2a'/%3E%3Cg fill='none' stroke='%23ffb347' stroke-width='2' opacity='.5'%3E%3Crect x='80' y='80' width='480' height='200' rx='12'/%3E%3C/g%3E%3Cg fill='%23e6f1f4' opacity='.85'%3E%3Ccircle cx='200' cy='200' r='16'/%3E%3Ccircle cx='320' cy='170' r='16'/%3E%3Ccircle cx='440' cy='210' r='16'/%3E%3C/g%3E%3Cg stroke='%2338e1c9' stroke-width='2' opacity='.7'%3E%3Cpath d='M200 200 L320 170 L440 210' fill='none'/%3E%3C/g%3E%3Ctext x='320' y='320' font-family='sans-serif' font-size='20' fill='%238affd9' text-anchor='middle' letter-spacing='4'%3E协作调度%3C/text%3E%3C/svg%3E" width="640" height="360" alt="赛事指挥中心多岗位协作调度的抽象信息图封面">
+          <div class="dkm-vcard-body">
+            <h3>幕后：一场两万人赛事的出入口是怎么排的</h3>
+            <p>采访赛事运营负责人，公开检录区、补给口与疏散通道的完整排布逻辑。</p>
+            <div><span class="dkm-tag">创作幕后</span><span class="dkm-tag">品牌故事</span></div>
+            <div class="dkm-meta"><span>作者 韩拾</span><span>播放 4.8 万</span><span>收藏 1,302</span></div>
+            <div class="dkm-actions">
+              <button class="dkm-act" data-like>赞 3,206</button>
+              <button class="dkm-act" data-fav>♡ 收藏</button>
+              <button class="dkm-act" data-copy>复制链接</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4 专题 -->
+  <section class="dkm-section" id="dkm-topics">
+    <div class="dkm-wrap">
+      <div class="dkm-sec-head">
+        <span class="dkm-kicker">Specials</span>
+        <h2>专题企划 ｜ 四季联赛与出入口观察</h2>
+        <p>专题是每天比赛出入口的内容骨架：以季度为单位策划，围绕比赛、报名、上传与投票持续更新，让社区始终有正在发生的事。</p>
+      </div>
+      <div class="dkm-topics">
+        <article class="dkm-topic dkm-topic-art">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 840 360'%3E%3Crect width='840' height='360' fill='%23102633'/%3E%3Cg fill='%2338e1c9' opacity='.8'%3E%3Crect x='90' y='150' width='18' height='130' rx='5'/%3E%3Crect x='200' y='110' width='18' height='170' rx='5'/%3E%3Crect x='310' y='170' width='18' height='110' rx='5'/%3E%3Crect x='420' y='90' width='18' height='190' rx='5'/%3E%3C/g%3E%3Cg fill='%23ffb347'%3E%3Cpath d='M600 160 l60 36 -60 36z'/%3E%3C/g%3E%3Cg stroke='%238affd9' stroke-width='2' fill='none' opacity='.6'%3E%3Cpath d='M520 300 h220'/%3E%3Cpath d='M520 300 l-14 -12 M520 300 l-14 12'/%3E%3Cpath d='M740 300 l14 -12 M740 300 l14 12'/%3E%3C/g%3E%3Ctext x='90' y='80' font-family='sans-serif' font-size='26' fill='%238affd9' letter-spacing='4'%3E四季联赛 · 冬季出入口%3C/text%3E%3C/svg%3E" width="840" height="360" alt="四季联赛冬季出入口专题横幅，含赛道指示灯与方向箭头">
+          <h3>四季联赛 · 冬季出入口 <span class="dkm-status live">更新中</span></h3>
+        </article>
+        <article class="dkm-topic">
+          <h3>冬季联赛全程跟拍 <span class="dkm-status live">更新中</span></h3>
+          <p>从 11 月持续到次年 1 月，覆盖 5 座城市的 12 场分站赛，本站派出固定机位与移动跟拍组。</p>
+          <ol>
+            <li>分站赛第一站：<span>起点入场纪实，已上线</span></li>
+            <li>分站赛第二站：<span>决赛终场哨后的看台，已上线</span></li>
+            <li>分站赛第三站：<span>志愿者一日，剪辑中</span></li>
+          </ol>
+        </article>
+        <article class="dkm-topic">
+          <h3>出入口观察计划 <span class="dkm-status">长期企划</span></h3>
+          <p>以“出入口”为切口，观察城市中所有具有比赛感的空间：地铁换乘、天桥、校门口、健身房闸机。</p>
+          <ol>
+            <li>地铁出入口的早晚高峰节奏，<span>已上线</span></li>
+            <li>一座天桥上的三百次相遇，<span>已上线</span></li>
+            <li>校门口的三分钟交接，<span>拍摄中</span></li>
+          </ol>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- S4/M15 深度解析 800 字以上 -->
+  <section class="dkm-section" id="dkm-deep">
+    <div class="dkm-wrap">
+      <div class="dkm-sec-head">
+        <span class="dkm-kicker">Brand Analysis</span>
+        <h2>关键词解析 ｜ 为什么“每天比赛出入口”值得长期拍下去</h2>
+        <p>这是一个由三个普通词组成的品牌名，却在赛事影像领域指向一种完整的内容方法论。以下从社区、内容与运营三个层面拆解。</p>
+      </div>
+      <div class="dkm-deep">
+        <p class="dkm-deep-lead">作为官方网站的长期栏目，本文由编辑部主笔，结合过去八年的拍摄档案与社区反馈整理而成，用于回答新创作者最常提出的问题：我们到底在拍什么。</p>
+
+        <h3>一、“每天”：把比赛从赛事日历里释放出来</h3>
+        <p>多数赛事内容只存在于比赛当天，颁奖结束就停止传播。每天比赛出入口的第一层判断是：比赛不是日历上的一个点，而是一条有长度的线。训练日的空场、报名当天的排队、赛前一周的器材检查、赛后第三天的成绩公示，这些都是比赛的一部分。平台因此把更新频率设定为“每天”，编辑组每日常规上线 3 到 6 条短片，覆盖赛事周期里的不同阶段。这样的节奏带来两个直接结果：一是创作者不必等到大赛才动笔，日常训练素材同样有发布价值；二是观众形成固定回访习惯，社区从“赛事直播式的一次性聚集”转变为“持续运营的日常社区”。在内容编排上，我们把这个理念拆成“今日焦点”“热门视频流”“专题更新”三个层级，让每个层级的更新频率不同，却指向同一个关键词。</p>
+
+        <h3>二、“比赛”：不只竞技，更是所有有规则、有输赢的日常</h3>
+        <p>如果只看竞技体育，内容池会很快枯竭。每天比赛出入口把“比赛”扩展到更广的生活场景：一场家庭厨艺比拼、一次部门提案竞标、一回社区跳绳比赛、一段通勤线路上的时间竞赛。这类选题的优势是供给充足、情感充沛，并且天然带有对抗与胜负带来的叙事张力。平台在审核标准上要求这类作品具备完整的过程交代：起点的准备、过程中的关键节点、终点的结果与情绪，不能只剪一个结果镜头。为了帮助创作者，我们在创作灵感模块里提供了“比赛叙事的五段结构”模板，并定期举办比赛，鼓励用户用同一结构拍摄不同题材。评奖维度除了画面质量，还包括叙事完整度与真实感，这也是平台口碑的组成部分。</p>
+
+        <h3>三、“出入口”：一个空间隐喻，也是内容分类的抓手</h3>
+        <p>出入口看似是附属设施，实际上决定了一场比赛的节奏与秩序。起点闸门打开的时间、检录通道的宽度、终点的缓冲区长度，都会影响参赛者体验。平台把这一空间概念转化为内容分类：入口类作品聚焦出发、聚集与期待；出口类作品聚焦疏散、告别与余韵；通道类作品则关注两端之间的移动。这样的分类让页面结构更清晰，也让创作者在选题时有了明确抓手。我们曾用整整一季拍摄某座城市的十二个出入口，从清晨的地铁闸机到深夜的球馆侧门，这组作品后来成为平台的代表作之一，被多家机构引用为城市影像素材。可以说，出入口既是关键词，也是我们的选题方法论。</p>
+
+        <div class="dkm-deep-quote">“拍下出发的人，也拍下离场的人，比赛的完整意义才成立。”——编辑部在内部审片会上反复提到的一句话，后来成为品牌故事的标准表述。</div>
+
+        <h3>四、从关键词到社区：持续运营的三条底线</h3>
+        <p>长期运营的关键不是热闹，而是稳定。第一条底线是原创与正版：所有赛事素材需获得主办方与拍摄对象授权，平台保留素材溯源信息，用户下载与二次使用时可见出处。第二条底线是用户至上：评论区不设无意义的刷量激励，点赞与收藏数据真实展示，我们更看重收藏率与完播率这类慢指标。第三条底线是社会责任：面向青少年赛事的内容须做隐私处理，未成年人出镜需监护人同意，赛事安全提示固定在视频末尾。正是这三条底线，让品牌在垂直领域积累了值得信赖的口碑，也让“每天比赛出入口”不只是一个名字，而是一种可被验证的内容承诺。</p>
+        <p>八年下来，平台的档案里存着一万多个小时的原始素材，其中绝大多数是没有戏剧冲突的普通时刻：等发令枪的沉默、系鞋带的手、走出场馆时回头的一眼。正是这些时刻构成了我们理解的真实与温暖，也解释了为什么这个关键词值得一直被拍下去。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- S5 创作者矩阵：双列简介 -->
+  <section class="dkm-section" id="dkm-authors">
+    <div class="dkm-wrap">
+      <div class="dkm-sec-head">
+        <span class="dkm-kicker">Creators</span>
+        <h2>创作者矩阵 ｜ 每天在出入口等你的人</h2>
+        <p>平台签约与特邀创作者共 137 位，以下为本周重点推荐。点击“作者信息”可查看完整档案与代表作。</p>
+      </div>
+      <div class="dkm-authors">
+        <article class="dkm-author">
+          <div class="dkm-avatar" style="background:linear-gradient(140deg,#38e1c9,#1f7f8e)">沈</div>
+          <div>
+            <h3>沈川野 <small>赛事纪实 · 主理人</small></h3>
+            <div class="dkm-field">擅长领域：城市路跑、赛场人物、长镜头叙事</div>
+            <p>早年做新闻摄影，2019 年转入赛事影像。习惯在起点待满两小时，只为等到人群真正松弛的那一刻。作品节奏偏慢，重视现场声与呼吸感。</p>
+            <div class="dkm-author-nums"><span>作品 <b>216</b></span><span>粉丝 <b>18.7 万</b></span></div>
+            <div class="dkm-author-btns"><button class="dkm-act" data-author="沈川野|赛事纪实主理人|擅长城市路跑与赛场人物，代表作《起点六点整》。">作者信息</button></div>
+          </div>
+        </article>
+        <article class="dkm-author">
+          <div class="dkm-avatar" style="background:linear-gradient(140deg,#ffb347,#e08a2c)">江</div>
+          <div>
+            <h3>江渡 <small>水上项目 · 特约</small></h3>
+            <div class="dkm-field">擅长领域：赛艇、皮划艇、水上安全科普</div>
+            <p>前赛艇运动员，退役后开始拍摄水上项目。擅长在船上架设多机位，坚持保留教练喊话的原声。希望让更多人看到水面之下的训练强度。</p>
+            <div class="dkm-author-nums"><span>作品 <b>94</b></span><span>粉丝 <b>9.2 万</b></span></div>
+            <div class="dkm-author-btns"><button class="dkm-act" data-author="江渡|水上项目特约创作者|前赛艇运动员，代表作《赛艇日：从下水码头到 2000 米终点》。">作者信息</button></div>
+          </div>
+        </article>
+        <article class="dkm-author">
+          <div class="dkm-avatar" style="background:linear-gradient(140deg,#8affd9,#38a8a0)">顾</div>
+          <div>
+            <h3>顾溪白 <small>技巧拆解 · 专栏</small></h3>
+            <div class="dkm-field">擅长领域：射击、射箭、精度类项目教程</div>
+            <p>体育学院教师，长期做技术动作的可视化拆解。视频里常出现分解图与慢动作对照，被观众称为“看得懂的教学”。写作同样细致，每期附拍摄手记。</p>
+            <div class="dkm-author-nums"><span>作品 <b>158</b></span><span>粉丝 <b>13.4 万</b></span></div>
+            <div class="dkm-author-btns"><button class="dkm-act" data-author="顾溪白|技巧拆解专栏作者|体育学院教师，代表作《十米气步枪：靶心之外的呼吸节奏》。">作者信息</button></div>
+          </div>
+        </article>
+        <article class="dkm-author">
+          <div class="dkm-avatar" style="background:linear-gradient(140deg,#7fb6ff,#3a6fb0)">韩</div>
+          <div>
+            <h3>韩拾 <small>数据与幕后 · 编辑</small></h3>
+            <div class="dkm-field">擅长领域：赛事数据分析、运营幕后、行业观察</div>
+            <p>数据新闻背景，负责平台的赛后复盘栏目。擅长把生硬的统计表变成可读的图谱，也乐于公开赛事筹备细节，让观众理解一场比赛背后的协作规模。</p>
+            <div class="dkm-author-nums"><span>作品 <b>121</b></span><span>粉丝 <b>7.8 万</b></span></div>
+            <div class="dkm-author-btns"><button class="dkm-act" data-author="韩拾|数据与幕后编辑|数据新闻背景，代表作《用三张图表读懂一场联赛的攻防效率》。">作者信息</button></div>
+          </div>
+        </article>
+        <article class="dkm-author">
+          <div class="dkm-avatar" style="background:linear-gradient(140deg,#ff9ab5,#c75a7a)">苏</div>
+          <div>
+            <h3>苏慢 <small>健康运动 · 共创</small></h3>
+            <div class="dkm-field">擅长领域：热身康复、大众健身、亲子运动</div>
+            <p>康复治疗师，与平台共同开发了赛前热身系列。她的作品里常有普通人的动作示范，不追求极致成绩，更在意动作是否安全、是否能长期坚持。</p>
+            <div class="dkm-author-nums"><span>作品 <b>83</b></span><span>粉丝 <b>11.6 万</b></span></div>
+            <div class="dkm-author-btns"><button class="dkm-act" data-author="苏慢|健康运动共创创作者|康复治疗师，代表作《晨练攻略：把公园器械用成一套完整热身》。">作者信息</button></div>
+          </div>
+        </article>
+        <article class="dkm-author">
+          <div class="dkm-avatar" style="background:linear-gradient(140deg,#b7a6ff,#6a55c9)">陆</div>
+          <div>
+            <h3>陆则安 <small>新人创作者 · 推荐</small></h3>
+            <div class="dkm-field">擅长领域：校园比赛、青年视角、轻纪录</div>
+            <p>大三学生，用手机完成大部分拍摄。作品聚焦校园里的各种小型比赛，跳绳、辩论、宿舍收纳赛都进过他的镜头。语感轻快，被社区称为“最会拍日常的新人”。</p>
+            <div class="dkm-author-nums"><span>作品 <b>37</b></span><span>粉丝 <b>4.1 万</b></span></div>
+            <div class="dkm-author-btns"><button class="dkm-act" data-author="陆则安|新人创作者|在校大学生，代表作《宿舍收纳大赛的十分钟》。">作者信息</button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- S6 数据榜单 -->
+  <section class="dkm-section" id="dkm-rank">
+    <div class="dkm-wrap">
+      <div class="dkm-sec-head">
+        <span class="dkm-kicker">Ranking</span>
+        <h2>数据榜单 ｜ 热度、新人、口碑三张表</h2>
+        <p>榜单每周一更新，统计口径公开。我们更愿意把榜单当作发现好作品的入口，而不是比较的工具。</p>
+      </div>
+      <div class="dkm-rank">
+        <div class="dkm-rank-col">
+          <h3>本周热度榜</h3>
+          <ol>
+            <li><span class="dkm-rank-no">1</span><span>起点六点整：三千人穿过同一道门</span><i>12.6万</i></li>
+            <li><span class="dkm-rank-no">2</span><span>百米决赛终点线：0.01 秒之外</span><i>9.7万</i></li>
+            <li><span class="dkm-rank-no">3</span><span>十米气步枪：靶心之外的呼吸</span><i>8.1万</i></li>
+            <li><span class="dkm-rank-no">4</span><span>晨练攻略：公园器械热身</span><i>7.3万</i></li>
+            <li><span class="dkm-rank-no">5</span><span>赛艇日：2000 米终点</span><i>6.4万</i></li>
+          </ol>
+        </div>
+        <div class="dkm-rank-col">
+          <h3>新人榜</h3>
+          <ol>
+            <li><span class="dkm-rank-no">1</span><span>陆则安 · 校园比赛轻纪录</span><i>4.1万</i></li>
+            <li><span class="dkm-rank-no">2</span><span>陶野 · 越野跑跟拍</span><i>3.2万</i></li>
+            <li><span class="dkm-rank-no">3</span><span>白榆 · 游泳出发台细节</span><i>2.9万</i></li>
+            <li><span class="dkm-rank-no">4</span><span>岑一 · 菜市场计时挑战</span><i>2.2万</i></li>
+            <li><span class="dkm-rank-no">5</span><span>周与 · 楼道跳绳赛</span><i>1.8万</i></li>
+          </ol>
+        </div>
+        <div class="dkm-rank-col">
+          <h3>口碑榜</h3>
+          <ol>
+            <li><span class="dkm-rank-no">1</span><span>终点线后的十二秒</span><i>9.6分</i></li>
+            <li><span class="dkm-rank-no">2</span><span>出入口观察：天桥三百次相遇</span><i>9.4分</i></li>
+            <li><span class="dkm-rank-no">3</span><span>裁判席视角：出入口管理</span><i>9.2分</i></li>
+            <li><span class="dkm-rank-no">4</span><span>幕后：两万人赛事的排布逻辑</span><i>9.0分</i></li>
+            <li><span class="dkm-rank-no">5</span><span>一座城市的十二个出入口</span><i>8.9分</i></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- S6 评论：双列短评 -->
+  <section class="dkm-section" id="dkm-comments">
+    <div class="dkm-wrap">
+      <div class="dkm-sec-head">
+        <span class="dkm-kicker">Voice</span>
+        <h2>社区口碑 ｜ 观众和参赛者在说什么</h2>
+        <p>评论来自站内真实账号，未经修饰。每一条反馈都会进入编辑部的月度复盘。</p>
+      </div>
+      <div class="dkm-comments">
+        <article class="dkm-comment">
+          <div class="dkm-comment-head"><span class="dkm-mini-av" style="background:#38e1c9">林</span><b>林下风</b><span>· 参赛者</span></div>
+          <p>第一次在自己的比赛里看到完整起点镜头，原来我起跑前一直在抖腿，家里人都笑疯了。这种细节只有真的站在出入口才拍得到。</p>
+        </article>
+        <article class="dkm-comment">
+          <div class="dkm-comment-head"><span class="dkm-mini-av" style="background:#ffb347">阿</span><b>阿祁</b><span>· 跑了七年</span></div>
+          <p>平台的赛事档案帮了大忙，去年同一条赛道的分段成绩都能查到，复盘特别方便。希望以后能把补给站位置也标在片子里。</p>
+        </article>
+        <article class="dkm-comment">
+          <div class="dkm-comment-head"><span class="dkm-mini-av" style="background:#8affd9">木</span><b>木木不说话</b><span>· 观众</span></div>
+          <p>最喜欢出入口观察那个专题，把地铁闸机拍出了仪式感。看完那天我专门放慢脚步走了一次换乘通道，确实不一样。</p>
+        </article>
+        <article class="dkm-comment">
+          <div class="dkm-comment-head"><span class="dkm-mini-av" style="background:#7fb6ff">陈</span><b>陈教练</b><span>· 青少年队</span></div>
+          <p>技术拆解那期讲扣扳机前的呼吸，我直接放给队员看。动作讲得清楚，不夸张，这才是专业内容该有的样子。</p>
+        </article>
+        <article class="dkm-comment">
+          <div class="dkm-comment-head"><span class="dkm-mini-av" style="background:#ff9ab5">小</span><b>小满的相机</b><span>· 新人创作者</span></div>
+          <p>投稿流程比想象中顺，授权说明写得很细，审核三天就给了反馈，还附了剪辑建议。作为新人挺受鼓励的。</p>
+        </article>
+        <article class="dkm-comment">
+          <div class="dkm-comment-head"><span class="dkm-mini-av" style="background:#b7a6ff">周</span><b>周末跑团</b><span>· 跑团运营</span></div>
+          <p>我们团三十多人一起看完了冬季联赛第一期，看到熟悉的路口出现在片子里，全群都在截图。就是希望分段标记再详细一点点。</p>
+        </article>
+        <article class="dkm-comment">
+          <div class="dkm-comment-head"><span class="dkm-mini-av" style="background:#38a8a0">夏</span><b>夏至未至</b><span>· 观众</span></div>
+          <p>画质是真的清楚，4K 在水面反光的地方也没糊。对比了几个平台，这里的赛事影像质感最稳，愿意一直看下去。</p>
+        </article>
+        <article class="dkm-comment">
+          <div class="dkm-comment-head"><span class="dkm-mini-av" style="background:#e08a2c">赵</span><b>赵工</b><span>· 赛事运营</span></div>
+          <p>出入口排布那期在同行群里传开了，我们照着调整了检录通道宽度。这类幕后内容对外行普通，对办赛的人非常实用。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- S7 辅助区：企业动态 / 合作 / FAQ -->
+  <section class="dkm-section" id="dkm-faq">
+    <div class="dkm-wrap">
+      <div class="dkm-sec-head">
+        <span class="dkm-kicker">Service</span>
+        <h2>企业动态 · 合作伙伴 · 常见问题</h2>
+        <p>官方发布的信息都会在这里同步。如需投稿、合作或反馈问题，可通过页面底部入口联系我们。</p>
+      </div>
+      <div class="dkm-aux">
+        <div class="dkm-aux-card">
+          <h3>企业动态</h3>
+          <ul class="dkm-news">
+            <li><time>11-20</time><span>冬季联赛专题上线，新增 6 条赛场短片</span></li>
+            <li><time>11-16</time><span>与三城体育中心达成素材授权合作</span></li>
+            <li><time>11-08</time><span>创作者开放日完成，新增 14 位签约作者</span></li>
+            <li><time>10-30</time><span>赛前热身系列课程第二季发布</span></li>
+          </ul>
+        </div>
+        <div class="dkm-aux-card">
+          <h3>合作伙伴</h3>
+          <p>平台与赛事主办方、场馆与装备品牌长期协作，内容素材均经授权使用。</p>
+          <div class="dkm-partner">
+            <span>城市体育中心</span><span>青野跑团联盟</span><span>水面运动协会</span>
+            <span>拾光装备</span><span>北方场馆集团</span><span>少年篮球联赛</span>
+          </div>
+        </div>
+        <div class="dkm-aux-card dkm-faq">
+          <h3>常见问题</h3>
+          <details>
+            <summary>如何向每天比赛出入口投稿？</summary>
+            <p>注册账号后进入投稿入口，填写赛事名称、时间、地点与授权信息，上传不低于 1080P 的素材或成片，审核通常在三个工作日内完成。</p>
+          </details>
+          <details>
+            <summary>使用赛事素材需要额外授权吗？</summary>
+            <p>需要。涉及主办方标识、参赛者肖像的内容须提供书面授权，平台会协助创作者对接主办方，但不代为担保。</p>
+          </details>
+          <details>
+            <summary>作品的数据是怎么统计的？</summary>
+            <p>播放量按有效观看计，收藏与点赞去重统计，榜单每周一零点更新，统计口径在帮助中心公开。</p>
+          </details>
+          <details>
+            <summary>可以下载视频用于个人留存吗？</summary>
+            <p>标注“可下载”的作品支持高清下载，请保留片尾署名与来源信息，不得用于商业用途或二次剪辑发布。</p>
+          </details>
+          <details>
+            <summary>未成年人出镜的内容如何处理？</summary>
+            <p>须取得监护人书面同意，并对可识别信息做模糊处理；校园赛事类内容统一不展示姓名与班级信息。</p>
+          </details>
+          <details>
+            <summary>商务合作怎么联系？</summary>
+            <p>可在页脚的合作邮箱提交需求，注明品牌、合作形式与档期，工作人员会在两个工作日内回复。</p>
+          </details>
+        </div>
+      </div>
+
+      <div class="dkm-cta">
+        <div>
+          <h2>把你的比赛，放进每天的内容里</h2>
+          <p>无论是专业赛事还是社区小比拼，只要有起点和终点，就值得被认真拍摄。上传作品，或报名参加本季创作挑战。</p>
+        </div>
+        <div class="dkm-hero-btns" style="margin:0">
+          <button class="dkm-btn dkm-btn-primary" id="dkmSubmitOpen2">立即投稿</button>
+          <button class="dkm-btn dkm-btn-ghost" id="dkmShareOpen">分享本页</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- S8 页脚 -->
+<footer class="dkm-footer">
+  <div class="dkm-wrap">
+    <div class="dkm-footer-grid">
+      <div>
+        <h4>每天比赛出入口</h4>
+        <p style="max-width:26em">聚焦赛事与竞技生活的原创高清视频品牌，持续运营八年，深耕垂直领域，以品质内容构建值得信赖的社区生态。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#dkm-focus">今日焦点</a></li>
+          <li><a href="#dkm-videos">热门视频</a></li>
+          <li><a href="#dkm-topics">专题企划</a></li>
+          <li><a href="#dkm-authors">创作者</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于平台</h4>
+        <ul>
+          <li><a href="#dkm-deep">品牌故事</a></li>
+          <li><a href="#dkm-rank">数据榜单</a></li>
+          <li><a href="#dkm-faq">常见问题</a></li>
+          <li><a href="#dkm-faq">投稿说明</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系我们</h4>
+        <ul>
+          <li>合作邮箱：brand@matchgate.example</li>
+          <li>投稿邮箱：create@matchgate.example</li>
+          <li>工作时间：周一至周五 10:00–19:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="dkm-footer-bottom">
+      <span>© 2026 每天比赛出入口官方网站 · 版权所有 · 持续运营中</span>
+      <span>品牌备案号：MW-2026-1122 · 内容授权与素材溯源可查</span>
+    </div>
+  </div>
+</footer>
+
+<!-- 弹窗 -->
+<div class="dkm-modal-mask" id="dkmModalMask">
+  <div class="dkm-modal" role="dialog" aria-modal="true" aria-labelledby="dkmModalTitle">
+    <h3 id="dkmModalTitle">标题</h3>
+    <div id="dkmModalBody"></div>
+    <div class="dkm-modal-foot">
+      <button class="dkm-btn dkm-btn-ghost" id="dkmModalClose">关闭</button>
+      <button class="dkm-btn dkm-btn-primary" id="dkmModalOk">确定</button>
+    </div>
+  </div>
+</div>
+<div class="dkm-toast" id="dkmToast"></div>
+<button class="dkm-top-btn" id="dkmTopBtn" aria-label="回到顶部">↑</button>
+
+<script>
+(function(){
+  "use strict";
+  var toastEl = document.getElementById('dkmToast');
+  var toastTimer = null;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2200);
+  }
+
+  /* 移动端导航 */
+  var burger = document.getElementById('dkmBurger');
+  var nav = document.getElementById('dkmNav');
+  burger.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){ nav.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  });
+
+  /* 搜索 */
+  var searchInput = document.getElementById('dkmSearchInput');
+  var searchBtn = document.getElementById('dkmSearchBtn');
+  var searchTip = document.getElementById('dkmSearchTip');
+  var feedback = document.getElementById('dkmSearchFeedback');
+  var titles = Array.prototype.slice.call(document.querySelectorAll('.dkm-vcard h3, .dkm-list-item h3, .dkm-focus-body h3'));
+
+  function doSearch(){
+    var q = searchInput.value.trim();
+    if(!q){
+      searchTip.textContent = '先输入一个关键词试试，比如“出入口”“起点”“热身”';
+      searchTip.style.display = 'block';
+      setTimeout(function(){ searchTip.style.display = 'none'; }, 2600);
+      return;
+    }
+    searchTip.style.display = 'none';
+    var hits = [];
+    titles.forEach(function(h){
+      if(h.textContent.indexOf(q) > -1){
+        hits.push(h.textContent.trim());
+        var card = h.closest('.dkm-vcard, .dkm-list-item, .dkm-focus-main');
+        if(card){ card.style.outline = '2px solid #38e1c9'; setTimeout(function(){ card.style.outline = 'none'; }, 2600); }
+      }
+    });
+    if(hits.length){
+      feedback.style.display = 'block';
+      feedback.innerHTML = '为你找到 <b>' + hits.length + '</b> 条相关内容：' + hits.slice(0,3).map(function(t){return '《'+t+'》';}).join('、') + (hits.length>3?' 等':'');
+    } else {
+      feedback.style.display = 'block';
+      feedback.textContent = '暂时没有直接匹配的作品，换个词试试：起点 / 终点 / 热身 / 幕后 / 赛艇 / 榜单';
+    }
+    var target = document.getElementById('dkm-videos');
+    if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+  }
+  searchBtn.addEventListener('click', doSearch);
+  searchInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ doSearch(); } });
+
+  /* 点赞 / 收藏 */
+  document.addEventListener('click', function(e){
+    var likeBtn = e.target.closest('[data-like]');
+    if(likeBtn){
+      var m = likeBtn.textContent.match(/[\d,]+/);
+      if(!m){ return; }
+      var base = parseInt(m[0].replace(/,/g,''), 10);
+      if(likeBtn.classList.contains('on')){
+        likeBtn.classList.remove('on');
+        likeBtn.textContent = '赞 ' + (base - 1).toLocaleString('en-US');
+        toast('已取消点赞');
+      } else {
+        likeBtn.classList.add('on');
+        likeBtn.textContent = '赞 ' + (base + 1).toLocaleString('en-US');
+        toast('已点赞，感谢你的支持');
+      }
+      return;
+    }
+    var favBtn = e.target.closest('[data-fav]');
+    if(favBtn){
+      if(favBtn.classList.contains('on')){
+        favBtn.classList.remove('on');
+        favBtn.textContent = '♡ 收藏';
+        toast('已取消收藏');
+      } else {
+        favBtn.classList.add('on');
+        favBtn.textContent = '♥ 已收藏';
+        toast('已加入我的收藏夹');
+      }
+    }
+  });
+
+  /* 复制链接 */
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-copy]');
+    if(!btn){ return; }
+    var link = 'https://matchgate.example/video/' + Math.random().toString(36).slice(2,8);
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = link; document.body.appendChild(ta); ta.select();
+      try{ document.execCommand('copy'); toast('链接已复制'); }catch(err){ toast('复制失败，请手动选择链接'); }
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(link).then(function(){ toast('链接已复制，欢迎分享'); }).catch(fallback);
+    } else { fallback(); }
+  });
+
+  /* 弹窗基础 */
+  var modalMask = document.getElementById('dkmModalMask');
+  var modalTitle = document.getElementById('dkmModalTitle');
+  var modalBody = document.getElementById('dkmModalBody');
+  var modalOk = document.getElementById('dkmModalOk');
+  var modalClose = document.getElementById('dkmModalClose');
+  var okHandler = null;
+
+  function openModal(title, html, okText, onOk){
+    modalTitle.textContent = title;
+    modalBody.innerHTML = html;
+    modalOk.textContent = okText || '确定';
+    okHandler = onOk || null;
+    modalMask.classList.add('open');
+  }
+  function closeModal(){
+    modalMask.classList.remove('open');
+    okHandler = null;
+  }
+  modalClose.addEventListener('click', closeModal);
+  modalMask.addEventListener('click', function(e){ if(e.target === modalMask){ closeModal(); } });
+  modalOk.addEventListener('click', function(){
+    if(okHandler){ okHandler(); } else { closeModal(); }
+  });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeModal(); } });
+
+  /* 评论弹窗 */
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-comment]');
+    if(!btn){ return; }
+    var card = btn.closest('.dkm-vcard, .dkm-list-item, .dkm-focus-main');
+    var title = card ? card.querySelector('h3').textContent.trim() : '这条作品';
+    openModal('评论 · ' + title,
+      '<p>欢迎留下你的赛场记忆或观看感受。评论将在审核后展示。</p>' +
+      '<textarea id="dkmCommentText" placeholder="写点什么…"></textarea>',
+      '提交评论',
+      function(){
+        var t = document.getElementById('dkmCommentText');
+        if(t && t.value.trim()){ toast('评论已提交，审核通过后展示'); closeModal(); }
+        else { toast('评论内容不能为空'); }
+      });
+  });
+
+  /* 作者信息弹窗 */
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-author]');
+    if(!btn){ return; }
+    var parts = btn.getAttribute('data-author').split('|');
+    openModal('创作者档案 · ' + parts[0],
+      '<p class="dkm-field-line"><b>身份：</b>' + parts[1] + '</p>' +
+      '<p class="dkm-field-line"><b>简介：</b>' + (parts[2] || '') + '</p>' +
+      '<p>该创作者已在平台持续更新，作品可在视频区通过作者筛选查看。</p>',
+      '知道了', function(){ closeModal(); });
+  });
+
+  /* 分享 */
+  var shareBtn = document.getElementById('dkmShareOpen');
+  if(shareBtn){
+    shareBtn.addEventListener('click', function(){
+      openModal('分享本页',
+        '<p>选择分享方式，或复制链接发送给朋友。</p>' +
+        '<div class="dkm-actions" style="margin-top:12px">' +
+        '<button class="dkm-act" data-share-way="微信">微信</button>' +
+        '<button class="dkm-act" data-share-way="微博">微博</button>' +
+        '<button class="dkm-act" data-share-way="QQ">QQ</button>' +
+        '<button class="dkm-act" data-share-way="链接">复制链接</button></div>',
+        '完成', function(){ closeModal(); });
+    });
+  }
+  document.addEventListener('click', function(e){
+    var way = e.target.closest('[data-share-way]');
+    if(way){
+      var name = way.getAttribute('data-share-way');
+      if(name === '链接'){
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText('https://matchgate.example/').then(function(){ toast('链接已复制'); }).catch(function(){ toast('复制失败'); });
+        } else { toast('复制失败'); }
+      } else { toast('已生成' + name + '分享卡片'); }
+      closeModal();
+    }
+    var shareAct = e.target.closest('[data-share]');
+    if(shareAct){ toast('分享卡片已生成，可复制给朋友'); }
+  });
+
+  /* 投稿弹窗 */
+  function bindSubmit(id){
+    var el = document.getElementById(id);
+    if(!el){ return; }
+    el.addEventListener('click', function(){
+      openModal('投稿我的赛场',
+        '<p>填写基本信息即可提交，编辑部会在三个工作日内反馈。</p>' +
+        '<input id="dkmSubTitle" placeholder="作品标题（如：起点六点整）">' +
+        '<input id="dkmSubAuthor" placeholder="署名 / 团队名称" style="margin-top:8px">' +
+        '<textarea id="dkmSubDesc" placeholder="简单描述赛事名称、时间与拍摄亮点…"></textarea>',
+        '提交投稿',
+        function(){
+          var t = document.getElementById('dkmSubTitle');
+          if(t && t.value.trim()){ toast('投稿已提交，请留意邮箱反馈'); closeModal(); }
+          else { toast('请先填写作品标题'); }
+        });
+    });
+  }
+  bindSubmit('dkmSubmitOpen1');
+  bindSubmit('dkmSubmitOpen2');
+
+  /* 回到顶部 */
+  var topBtn = document.getElementById('dkmTopBtn');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 520){ topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); }
+  }, {passive:true});
+  topBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
+</body>
+  </html>
